@@ -1,5 +1,5 @@
 <?php 
-/**
+/*
 Plugin Name: Spellbit SB Latest Posts
 Plugin URI: http://spellbit.com
 Author: Spellbit
@@ -201,14 +201,14 @@ Class Latest_posts_Widget extends WP_Widget{
 			if( $q->have_posts() ):
 			while( $q->have_posts() ):$q->the_post();
 				$words = ($instance['content_words']) ? $instance['content_words'] : '10';
-				$read_more = ' read more';
+				$read_more = '<a href="<?php the_permalink();?>" class="readmore-sp">Read More </a>';
 			?>
 		            <li class="sbSingleLatesPost">
 						<?php $sp_latest_post_thumb = wp_get_attachment_image_src(get_post_thumbnail_id(get_queried_object_id()),'full', true);?>
 						<?php if( has_post_thumbnail() ): ?>
-							<div class="rc-post-thumb" style="background-image: url(<?php echo esc_url($sp_latest_post_thumb[0]);?>)">
-								<a href="<?php the_permalink(); ?>"></a>
-							</div>
+							<a class="rc-post-thumb" href="<?php the_permalink(); ?>" style="background-image: url(<?php echo esc_url($sp_latest_post_thumb[0]);?>)">
+								
+							</a>
 						<?php endif; ?>
 		                <div class="rc-post-content">
 		                    <h4>
@@ -217,7 +217,7 @@ Class Latest_posts_Widget extends WP_Widget{
 									edit_post_link(
 										sprintf(
 										/* translators: %s: Name of current post */
-											esc_html__( 'Edit %s', 'abong' ),
+											esc_html__( 'Edit %s', 'spellbit' ),
 											the_title( '<span class="screen-reader-text">"', '"</span>', false )
 										),
 										'<small class="edit-linksp">',

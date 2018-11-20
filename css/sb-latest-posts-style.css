@@ -3,6 +3,11 @@
 	padding: 0;
 	list-style: none;
 }
+.spLP-sidebar li a:hover,
+.spLP-sidebar li:hover
+{
+	box-shadow: none !important;
+}
 
 .spLP-sidebar li.sbSingleLatesPost{
 	display: flex;
@@ -11,7 +16,7 @@
 	border-top: none !important;
 	margin-bottom: 15px;
 	border-radius: 3px;
-	
+	line-height: 26px;
 	padding: 0px 0px 10px;
 }
 
@@ -65,4 +70,10 @@
 	box-shadow: none !important;
 	background: #2368fd !important;
 	color: #fff !important;
+}
+.readmore-sp{
+	display: block !important;
+	color: #666;
+	font-size: 14px !important;
+	text-transform: lowercase !important;
 }
