@@ -201,7 +201,7 @@ Class Latest_posts_Widget extends WP_Widget{
 			if( $q->have_posts() ):
 			while( $q->have_posts() ):$q->the_post();
 				$words = ($instance['content_words']) ? $instance['content_words'] : '10';
-				$read_more = 'read more';
+				$read_more = ' read more';
 			?>
 		            <li>
 		                <div class="rc-post-thumb">
