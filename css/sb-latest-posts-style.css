@@ -1,12 +1,68 @@
-.sidebar-rc-post li {
+.spLP-sidebar{
+	margin: 0;
+	padding: 0;
 	list-style: none;
 }
 
-.sidebar-rc-post li {
-	list-style: none;
-	margin-bottom: 25px;
+.spLP-sidebar li.sbSingleLatesPost{
+	display: flex;
+	align-items: flex-start;
+	border-bottom: 1px solid #eee;
+	border-top: none !important;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	
+	padding: 0px 0px 10px;
 }
-.sidebar-rc-post li:last-child {
-	list-style: none;
-	margin-bottom: 0;
+
+.spLP-sidebar li.sbSingleLatesPost::before,
+.spLP-sidebar li.sbSingleLatesPost::after{
+	display: none !important;
+}
+
+.spLP-sidebar li.sbSingleLatesPost:last-child{
+	border-bottom: 1px solid transparent;
+	padding: 0px;
+}
+
+.spLP-sidebar li.sbSingleLatesPost .rc-post-thumb{
+	margin-right: 15px;
+	width: 130px;
+	height: 100px;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-radius: 1px;
+
+}
+.postDate{
+	display: block !important;
+	line-height: 10px;
+	margin-bottom: 15px;
+}
+
+.spLP-sidebar li.sbSingleLatesPost .rc-post-content{
+	flex: 1;
+}
+
+.spLP-sidebar li.sbSingleLatesPost .rc-post-content h4 {
+	text-transform: capitalize;
+	font-size: 18px;
+	
+}
+
+.edit-linksp a{
+    color: #fff;
+    font-weight: 500;
+	position: relative;
+	font-size: 10px !important;
+	background: #2368fd;
+	padding: 2px;
+	border-radius: 2px;
+}
+.edit-linksp a:hover {
+	text-decoration: none !important;
+	box-shadow: none !important;
+	background: #2368fd !important;
+	color: #fff !important;
 }

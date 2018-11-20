@@ -188,7 +188,7 @@ Class Latest_posts_Widget extends WP_Widget{
      		<?php echo $after_title; ?>
      	<?php endif; ?>
 		    <div class="sidebar-rc-post">
-		        <ul>
+		        <ul class="spLP-sidebar">
 		        	
 		    <?php 
 			$q = new WP_Query( array(
@@ -203,23 +203,33 @@ Class Latest_posts_Widget extends WP_Widget{
 				$words = ($instance['content_words']) ? $instance['content_words'] : '10';
 				$read_more = ' read more';
 			?>
-		            <li>
-		                <div class="rc-post-thumb">
-		                    <a href="<?php the_permalink(); ?>">
-		                        <?php the_post_thumbnail('latest-post-thumb'); ?>
-		                    </a>
-		                </div>
+		            <li class="sbSingleLatesPost">
+						<?php $sp_latest_post_thumb = wp_get_attachment_image_src(get_post_thumbnail_id(get_queried_object_id()),'full', true);?>
+						<?php if( has_post_thumbnail() ): ?>
+							<div class="rc-post-thumb" style="background-image: url(<?php echo esc_url($sp_latest_post_thumb[0]);?>)">
+								<a href="<?php the_permalink(); ?>"></a>
+							</div>
+						<?php endif; ?>
 		                <div class="rc-post-content">
 		                    <h4>
-		                        <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-		                    </h4>
-
+								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								<?php
+									edit_post_link(
+										sprintf(
+										/* translators: %s: Name of current post */
+											esc_html__( 'Edit %s', 'abong' ),
+											the_title( '<span class="screen-reader-text">"', '"</span>', false )
+										),
+										'<small class="edit-linksp">',
+										'</small>'
+									); ?>
+							</h4>
+							<span class="postDate"><small><?php the_time('F d, Y'); ?></small></span>
 		                     <?php 
 		                     if( !empty($show_content)){
 		                     	print wp_trim_words(get_the_content(), $words, $read_more ); 
 		                     }                    
 		                     ?>
-		                    <div class="widget-date"><?php the_time('F d, Y'); ?></div>
 		                </div>
 		            </li>
 				<?php endwhile;            
