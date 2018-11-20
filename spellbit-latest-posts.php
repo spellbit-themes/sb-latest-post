@@ -41,11 +41,13 @@ function spellbit_latest_posts_func($atts, $content){
 	
 	while( $q->have_posts() ):$q->the_post(); 
 		$author_link = get_author_posts_url( get_the_author_meta( 'ID' ));
-		$read_more = '<br /><a href="'.get_permalink().'">read more</a>';
+		$read_more = '<a href="'.get_permalink().'" class="readmore-sp">read more</a>';
 	?>
 
 	
 	<!-- image -->
+	<div class="sp-blog-single-blog">
+	<div class="sp-blog-thumb">
 	<?php	
 		if( $img === 'yes'){
 
@@ -61,39 +63,51 @@ function spellbit_latest_posts_func($atts, $content){
 
 		}
 	?>
+	</div>
 
 	<!-- title && content -->
-    <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-    <?php echo wp_trim_words(get_the_content(), $words, $read_more ); ?>
-
-    <!-- date -->
-    <?php if( $date === 'yes' ){ ?>
-		<h6><?php echo get_the_time('d F, Y'); ?></h6>
-    <?php } ?>
-
-
-    <!-- tags -->
-    <?php 
+	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+	<div class="sp-dflex bottom">
+	<div class="sptagsa">
+	    <!-- tags -->
+		<?php 
 		if( $tag === 'yes'){
-        	the_tags(); 
+        	the_tags(" "); 
     	}
     ?>
+  </div>
 	
 
-	<!-- category -->
-    <?php 
+	<div class="sptagsa">
+			<!-- category -->
+			<?php 
 
-        if($cat === 'yes'){
-        	the_category(); 
-        }
-    ?>
+	if($cat === 'yes'){
+		the_category(" "); 
+	}
+	?>
+	</div>
+	</div>
+    <?php echo wp_trim_words(get_the_content(), $words, $read_more ); ?>
 
-    <!-- author -->
+	<div class="sp-dflex  top">
+	<div class="sptagsa">
+		 <!-- date -->
+		 <?php if( $date === 'yes' ){ ?>
+		<a href="<?php the_permalink();?>"><?php echo get_the_time('d F, Y'); ?></a>
+    <?php } ?>
+	</div>
+   
+
+   <div class="sptagsa">
+	    <!-- author -->
  	<?php if( $author === 'yes'){ ?>
 		<a href="<?php  echo esc_url($author_link); ?>"><?php the_author(); ?></a>
  	<?php } ?>
+   </div>
+	</div>
 
-	<hr />
+</div>
 
 	<?php endwhile; wp_reset_postdata(); 
 	return ob_get_clean();
