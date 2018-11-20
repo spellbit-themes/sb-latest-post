@@ -1,0 +1,12 @@
+.sidebar-rc-post li {
+	list-style: none;
+}
+
+.sidebar-rc-post li {
+	list-style: none;
+	margin-bottom: 25px;
+}
+.sidebar-rc-post li:last-child {
+	list-style: none;
+	margin-bottom: 0;
+}
