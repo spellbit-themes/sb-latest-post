@@ -153,27 +153,63 @@ function spellbit_latest_posts_files(){
 * settings api
 *
 */
-add_action('admin_init', 'sp_latest_posts_func');
 
-function sp_latest_posts_func(){
-
-
-	add_settings_field( 'header_text', 'Header Title', 'header_text_func', 'reading', 'default', array( '' ) );
-
-	register_setting('reading', 'header_text');
-
+add_action( 'admin_menu', 'register_my_custom_menu_page' );
+function register_my_custom_menu_page() {
+  // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+  add_menu_page( 'Latest Posts', 'SB Latest Posts', 'manage_options', 'custom.php', 'latest_post_panel_func', 'dashicons-welcome-widgets-menus', 90 );
 }
 
-function header_text_func(){
-?>
-	
-	<input type="text" name="header_text" class="regular-text" value="<?php echo get_option('header_text'); ?>">
-
-<?php }
 
 
+function latest_post_panel_func(){
+	?>
+<h1>Latest Post</h1>
+<h2>You can use this plugin in two ways as Widget & Shortcode.</h2>
+
+<h3>1 : Widget</h3>
+<p>To show latest post in sidebar, you can go <b>appearance -> Widget</b><br />
+you will find a widget named "<b>Spellbit Latest Posts</b>"
+</p>
+<img src="<?php echo Plugins_url('/images/widget_1.png', __FILE__); ?>" alt="">
+<h1>Let's have a look at the widget options</h1>
+<h2>1. Widget Title:</h2> 
+<p>If you want to show widget  title, then you can give a widget title here.
+Otherwise, it will be blank.</p>
+
+<h2>2. Post Number:</h2>
+<p>You can define the number of latest posts to show in sidebar.</p>
+
+<h2>3. Post Excerpt:</h2>
+<p>Now you can decide whether you want to show the excert or not.
+If you want, then you need to tick it. 
+After that, you will find the options for the exerpt words.</p>
+
+<h2>4. Excerpt Words:</h2>
+<p>You can define the number of words, you want to show as the content.</p>
+
+<h2>5. Posts Order</h2>
+<p>You can define the post order from here. If you select ASC or DESC. By default, DESC is selected.</p>
+<img src="<?php echo Plugins_url('/images/widget_3.png', __FILE__); ?>" alt="">
 
 
+<h1>2: Shortcode</h1>
+<h3>You can use the shorcode to any pages, you have created in your dashboard. <br />Go to page where you want to show the latest post.<br /> Then you need to use the shortcode</h3>
+
+<code>[spellbit_latest_posts img="yes" date="yes" tag="yes" cat="yes" words="30"]</code>
+<h2>Let's discuss with the options of shortcode</h2>
+<ul>
+	<li><h2>img="yes" :</h2> <h4>If you want to show the image thumbnail, then you will have to use "yes".<br />If you don't want to use image, then use "no"</h4></li>
+	<li><h2>date="yes" :</h2> <h4>If you want to show the date, then you will have to use "yes".<br />If you don't want to use date, then use "no"</h4></h4></li>
+	<li><h2>tag="yes" :</h2> <h4>If you want to show the tags, then you will have to use "yes".<br />If you don't want to use tag, then use "no"</h4></h4></li>
+	<li><h2>cat="yes" :</h2> <h4>If you want to show the categories, then you will have to use "yes".<br />If you don't want to use categories, then use "no"</h4></h4></li>
+	<li><h2>words="30" :</h2> <h4>If you want to modify the number text of the excerpt, then you can do it by changing the number</h4></h4></li>
+</ul>
+<br />
+<br />
+<img class="img-responsive" src="<?php echo Plugins_url('/images/shortcode-1.png', __FILE__); ?>" alt="">
+	<?php
+}
 
 
 
